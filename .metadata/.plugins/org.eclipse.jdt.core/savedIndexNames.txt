@@ -1,6 +1,4 @@
 INDEX VERSION 1.127+E:\GitHub\leetcode\.metadata\.plugins\org.eclipse.jdt.core
-162944868.index
-1988736952.index
 3963179895.index
 1654984216.index
 1311535199.index
