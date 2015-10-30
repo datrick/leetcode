@@ -1,0 +1,27 @@
+package leet029;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+
+	public int divide(int dividend, int divisor) {
+		List<Integer> powerList = new ArrayList<>();
+		int pow = divisor;
+		while (pow <= dividend){
+			powerList.add(pow);
+			pow += pow;
+		}
+		int cur = powerList.size() - 1, i = 0;
+		while (dividend >= divisor){
+			for (i = cur; i >= 0 && powerList.get(i) > dividend; i --) ;
+			cur = i - 1;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package leet018;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class Solution {
+
+	public List<List<Integer>> fourSum(int[] num, int target) {
+		Stack<Integer> st = new Stack<>();
+		List<List<Integer>> rslt = new ArrayList<>();
+		if (num.length == 0)
+			return rslt;
+		st.push(0);
+		int next = 1, lastPop = -1, count = 1;
+		while (! st.isEmpty()){
+			if (n
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

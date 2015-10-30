@@ -1,0 +1,42 @@
+package leet037;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
+
+public class Solution {
+
+	private static class Coordinates {
+		public int i, j;
+		public Coordinates (int x, int y) {
+			i = x;
+			j = y;
+		}
+	}
+	public void solveSudoku(char[][] board) {
+		List<List<Set<Character>>> existed = new ArrayList<>();
+		for (int i = 0; i < 3; i ++){
+			existed.add(new ArrayList<>());
+			for (int j = 0; j < board.length; j ++)
+				existed.get(i).add(new HashSet<>());
+		}
+		for (int i = 0; i < board.length; i ++)
+			for (int j = 0; j < board.length; j ++){
+				existed.get(0).get(i).add(board[i][j]);
+				existed.get(1).get(j).add(board[i][j]);
+				existed.get(2).get(j / 3 * 3 + i / 3).add(board[i][j]);
+			}
+		Stack<Coordinates> cur = new Stack<>();
+		Stack<Coordinates> next = new Stack<>();
+		Stack<Character> value = new Stack<>();
+		cur.push(new Coordinates(0, 0));
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

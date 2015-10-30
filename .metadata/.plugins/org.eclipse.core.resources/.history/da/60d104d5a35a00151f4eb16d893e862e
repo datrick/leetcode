@@ -1,0 +1,61 @@
+package leet236;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class Solution {
+
+	public static class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
+	}
+
+	private List<TreeNode> findPath(TreeNode root, TreeNode p) {
+		if (root == null)
+			return null;
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+		while (! st.isEmpty()){
+			do {
+				TreeNode tn = st.peek();
+				if (tn == p)
+					return new ArrayList<TreeNode>(st);
+				if (tn.left != null)
+					st.push(tn.left);
+				else {
+					if (tn.right != null)
+						st.push(tn.right);
+					else
+						break;
+				}
+			} while (true);
+			
+			while (! st.isEmpty()) {
+				TreeNode tn = st.pop();
+				if (! st.isEmpty() && tn == st.peek().left && st.peek().right != null) {
+						st.push(st.peek().right);
+						break;
+					}
+			}
+		}
+		return new ArrayList<TreeNode>(st);
+	}
+	
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		List<TreeNode> pPath = findPath(root, p), qPath = findPath(root, q);
+		TreeNode tn = null;
+		for (int i = 0; i < pPath.size() && i < qPath.size() && pPath.get(i) == qPath.get(i); i ++) {
+			tn = pPath.get(i);
+		}
+		return tn;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

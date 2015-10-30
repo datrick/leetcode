@@ -1,0 +1,25 @@
+package leet236;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+
+	public static class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
+	}
+
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		List<TreeNode> pPath = new ArrayList<>(), qPath = new ArrayList<>();
+		TreeNode tn = null;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

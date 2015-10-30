@@ -1,0 +1,25 @@
+package leet126;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+public class SolutionII {
+
+	private int calDis(String s, String t){
+		int d = 0;
+		/*		System.out.format("s: %s, t: %s\n", s, t);
+		 */		for(int i = 0; i < s.length(); i ++){
+			 /*			System.out.format("s: %c, t: %c\n", s.charAt(i), t.charAt(i));
+			  */			/*if(Character.compare(s.charAt(i), t.charAt(i)) != 0)*/
+			 if(Character.compare(s.charAt(i), t.charAt(i)) != 0)
+				 d ++;
+		 }
+		 return d;
+	}
+
+	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+		List<List<String>> result = new ArrayList<>();
+		List<String> tmpList = new ArrayList<>();
+	}
+}

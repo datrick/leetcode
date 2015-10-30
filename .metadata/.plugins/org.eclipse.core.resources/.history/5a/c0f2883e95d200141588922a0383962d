@@ -1,0 +1,29 @@
+package leet099;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
+public class Solution {
+
+	public void recoverTree(TreeNode root) {
+		if(root == null)
+			return;
+		List<TreeNode> swapped = new ArrayList<>();
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+		while(!st.isEmpty()){
+			while(st.peek().left != null)
+				st.push(st.peek().left);
+			TreeNode tn = st.pop();
+			while(tn.right == null)
+				tn = st.pop();
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

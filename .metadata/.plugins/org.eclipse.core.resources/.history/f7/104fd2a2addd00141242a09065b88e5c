@@ -1,0 +1,37 @@
+package leet044;
+
+import java.util.Arrays;
+
+public class SolutionII extends Solution {
+
+	private boolean isSame(char c1, char c2){
+		if (c1 == c2 || c1 == '?' || c2 == '?' || c1 == '*' || c2 == '*')
+			return true;
+		return false;
+	}
+	
+	public boolean isMatch(String s, String p){
+		s = new Solution().removeStars(s);
+		p = new Solution().removeStars(p);
+		boolean[][] dp = new boolean[s.length()][p.length()];
+		for (boolean[] aLine : dp)
+			Arrays.fill(aLine, Boolean.FALSE);
+		if (isSame(s.charAt(0), p.charAt(0)))
+			dp[0][0] = true;
+		else
+			return false;
+		if (! isSame(s.charAt(s.length() - 1), p.charAt(p.length() - 1)))
+			return false;
+		if (s.charAt(0) == '*')
+			Arrays.fill(dp[0], true);
+		else{
+			if ((s.charAt(0) == p.charAt(0) && p.charAt(1) == '*') || (s.charAt(0) == p.charAt(1) && p.charAt(0) == '*'))
+				dp[0][1] = true;
+			for (int i = 1; i < dp[0].length; i ++){
+				dp[0][i]
+			}
+		}
+		return true;
+	}
+
+}

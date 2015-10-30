@@ -1,0 +1,37 @@
+package leet205;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+
+	public boolean isIsomorphic(String s, String t) {
+		if (s.length() != t.length())
+			return false;
+		Map<Character, Character> dicts2t = new HashMap<>(), dictt2s = new HashMap<>();
+		for (int n = s.length(), i = 0; i < n; i ++) {
+			char chs = s.charAt(i), cht = t.charAt(i);
+			
+			if (!dicts2t.containsKey(chs) && !dictt2s.containsKey(cht)) {
+				dicts2t.put(chs, cht);
+				dictt2s.put(cht, chs);
+			} else {
+				if (dicts2t.containsKey(chs) && dictt2s.containsKey(cht)) {
+					char chv = dicts2t.get(chs), chw = dictt2s.get(cht);
+					if (chv != cht || chw != chs)
+						return false;
+				} else {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = "paper", t = "title";
+		System.out.println(new Solution().isIsomorphic(s, t));
+	}
+
+}

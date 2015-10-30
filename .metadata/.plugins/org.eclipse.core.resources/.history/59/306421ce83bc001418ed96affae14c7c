@@ -1,0 +1,34 @@
+package leet166;
+
+public class Solusion {
+
+	public String fractionToDecimal(int numerator, int denominator) {
+		StringBuilder sb = new StringBuilder();
+		int result = 0, remainder = 0, int sign = 1;
+		if(numerator < 0){
+			sign = sign * -1;
+			numerator *= -1;
+		}
+		if(denominator < 0){
+			sign = sign * -1;
+			denominator *= -1;
+		}
+		if(sign < 0)
+			sb.append('-');
+		if(numerator >= denominator){
+			result = numerator / denominator;
+			sb.append(Integer.toString(result) + ".");
+			numerator = numerator % denominator;
+		}
+		else{
+			sb.append("0.");
+		}
+		while(numerator > 0)
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

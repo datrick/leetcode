@@ -1,0 +1,52 @@
+package leet140;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Solusion {
+
+	private List<String> tempList = new ArrayList<String>();
+	public List<String> list = new ArrayList<String>();
+
+	private void breakWord(String s, int i, Set<String> dict){
+		if(i >= s.length()){
+			StringBuilder sb = new StringBuilder();
+			sb.append(tempList.get(0));
+			for(int j = 1; j < tempList.size(); j ++)
+				sb.append(" " + tempList.get(j));
+			list.add(sb.toString());
+		}
+		else{
+			StringBuilder sb = new StringBuilder();
+			String t = null;
+			for(int j = i; j < s.length(); j ++){
+				sb.append(s.charAt(j));
+				t = sb.toString();
+				if(dict.contains(t)){
+					tempList.add(t);
+					breakWord(s, j+1, dict);
+					tempList.remove(tempList.size() - 1);
+				}
+			}
+		}
+	}
+	public List<String> wordBreak(String s, Set<String> dict) {
+		if(!s.isEmpty())
+			this.breakWord(s, 0, dict);
+		return list;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String[] d = {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
+		Set<String> dict = new HashSet<String>(Arrays.asList(d));
+		String s = "catsanddog";
+		String t = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+		Solusion obj = new Solusion();
+		List<String> result = obj.wordBreak(t, dict);
+		System.out.println(result);
+	}
+}

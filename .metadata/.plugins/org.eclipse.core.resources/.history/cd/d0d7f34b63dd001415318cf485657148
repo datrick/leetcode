@@ -1,0 +1,17 @@
+package leet044;
+
+public class Solution {
+
+	private boolean checkMatch(String s, int i, String p, int j){
+		
+	}
+	public boolean isMatch(String s, String p) {
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,25 @@
+package leet172;
+
+public class Solusion {
+
+	public int trailingZeroes(int n) {
+		int num2 = 0, num5 = 0;
+		int num = 0;
+		if(n % 10 >= 5)
+			num = 1;
+		n /= 10;
+		while(n > 0){
+			num += (n % 10) * base;
+			base *= 10;
+			n /= 10;
+		}
+		return num;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Solusion obj = new Solusion();
+		for(int i = 0; i < 5; i ++)
+			System.out.format("%d\n", obj.trailingZeroes((int)(Math.pow(10,i))));
+	}
+
+}

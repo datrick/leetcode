@@ -1,0 +1,28 @@
+package leet169;
+
+public class Solusion {
+
+	public class Node{
+		public int val;
+		public int num;
+		Node next;
+		Node prev;
+		
+		public Node(int value){
+			this.val = value;
+			this.num = 1;
+			this.next = null;
+			this.prev = null;
+		}
+	}
+	public int majorityElement(int[] num) {
+
+		Map<Integer, Node> map = HashMap<Integer, Node>();
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

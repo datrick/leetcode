@@ -1,0 +1,14 @@
+package leet044;
+
+import java.util.Arrays;
+
+public class SolutionII extends Solution {
+
+	public boolean isMatch(String s, String p){
+		boolean[][] matchTable = new boolean[s.length()][p.length()];
+		for (boolean[] aLine : matchTable)
+			Arrays.fill(aLine, Boolean.FALSE);
+		return true;
+	}
+
+}

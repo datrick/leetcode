@@ -1,0 +1,57 @@
+package leet166;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solusion {
+
+	public String fractionToDecimal(int numerator, int denominator) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		StringBuilder sb = new StringBuilder();
+		int result = 0, sign = 1, count = 1;
+		if(numerator < 0){
+			sign = sign * -1;
+			numerator *= -1;
+		}
+		if(denominator < 0){
+			sign = sign * -1;
+			denominator *= -1;
+		}
+		if(sign < 0)
+			sb.append('-');
+		if(numerator >= denominator){
+			result = numerator / denominator;
+			sb.append(Integer.toString(result) + ".");
+			numerator = numerator % denominator;
+		}
+		else{
+			sb.append("0.");
+		}
+		while(numerator > 0){
+			numerator *= 10;
+			if(map.containsKey(numerator)){
+				sb.insert((int)map.get(numerator), '(');
+				sb.append(')');
+			}
+			map.put(numerator, sb.length());
+			if(numerator < denominator){
+				sb.append(0);
+			}
+			else{
+				sb.append(numerator/denominator);
+				numerator %= denominator;
+			}
+			if(count ++ >= 50)
+				break;
+		}
+		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Solusion obj = new Solusion();
+		int numerator = 1, denominator = 13;
+		System.out.println(obj.fractionToDecimal(numerator, denominator));
+	}
+
+}

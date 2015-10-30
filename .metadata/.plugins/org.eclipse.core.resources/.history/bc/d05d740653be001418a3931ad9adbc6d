@@ -1,0 +1,42 @@
+package leet151;
+
+public class Solusion {
+
+	public String reverseWords(String s) {
+
+		boolean inWord = false;
+		StringBuilder sb = new StringBuilder();
+		StringBuilder t = new StringBuilder();
+		for(int i = s.length() - 1; i >= 0; i --){
+			if(s.charAt(i) != ' '){
+				if(inWord == false){
+					inWord = true;
+				}
+				t.append(s.charAt(i));
+			}
+			else{
+				if(inWord == true){
+					inWord = false;
+					if(sb.length() != 0)
+						sb.append(' ');
+					sb.append(t.reverse());
+					t.delete(0, t.length());
+				}
+			}
+		}
+		if(inWord = true){
+			if(sb.length() != 0)
+				sb.append(' ');
+			sb.append(t.reverse());
+			t.delete(0, t.length());
+		}
+		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Solusion obj = new Solusion();
+		System.out.println(obj.reverseWords(" 1"));
+	}
+
+}

@@ -1,0 +1,94 @@
+package leet152;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solusion {
+
+	public int[] reduceArray(int[] A){
+		List<Integer> list = new ArrayList<Integer>();
+		int i = 0, t = 0;
+		for(i = 0; i < A.length; i ++){
+			if(A[i] <= 0){
+				if(t != 0){
+					list.add(t);
+					t = 0;
+				}
+				list.add(A[i]);
+			}
+
+			if(A[i] > 0){
+				if(t == 0)
+					t = A[i];
+				else
+					t *= A[i];
+			}
+		}
+		if(t != 0)
+			list.add(t);
+		int[] num = new int[list.size()];
+		for(i = 0; i < num.length; i ++)
+			num[i] = list.get(i);
+/*		System.out.println(list.toString());
+*/		return num;
+	}
+
+	public int calMax(int[] A, int l, int r){
+		int[][] p = new int[r - l][r - l];
+		int i = 0, j = 0, max = 0;
+		for(i = 0; i < p.length; i ++)
+			p[i][i] = A[i + l];
+		for(i = 0; i < p.length; i ++)
+			for(j = i + 1; j < p.length; j ++){
+				p[i][j] = p[i][j - 1] * A[j + l];
+				if(p[i][j] > max)
+					max = p[i][j];
+			}
+		return max;
+	}
+
+	public int maxProduct(int[] A) {
+/*		int[] num = this.reduceArray(A);
+		for(int i = 0; i < num.length; i ++)
+			System.out.format("%d, ", num[i]);*/
+		int max = 0, i = 0, p1 = 1, pm = 1, p2 = 1, result = 1;
+		boolean even = true, ready = false;
+		
+		for(i = 0; i < A.length; i ++){
+			if(A[i] == 0){
+				if(ready){
+					if(even){
+						result = p1 * pm * p2;
+						if(result > max)
+							max = result;
+					}
+					else{
+						
+					}
+				}
+					
+			}
+		}
+		/*while(l < A.length){
+			while(l < A.length && A[l] == 0)
+				l ++;
+			if(l >= A.length)
+				return max;
+			for(r = l; r < A.length && A[r] != 0; r ++);
+			t = this.calMax(A, l, r);
+			if(t > max)
+				max = t;
+			l = r;
+		}*/
+		return max;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Solusion obj = new Solusion();
+		int[] num = {1, 2, -1, 3, -4, 0, 5, -1, -1, 6, -1, -1, 2};
+		System.out.format("result is: %d\n",obj.maxProduct(num));
+
+	}
+
+}

@@ -1,0 +1,20 @@
+package leet169;
+
+public class Solusion {
+
+	public class Node{
+		public int val;
+		public int num;
+		Node next;
+		Node prev;
+	}
+	public int majorityElement(int[] num) {
+
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,30 @@
+package leet044;
+
+public class Solution {
+
+	private boolean checkMatch(String s, int i, String p, int j){
+		int 
+		if (i >= s.length() && j >= p.length())
+			return true;
+		if (i >= s.length() && j < p.length() || i < s.length() && j >= p.length())
+			return false;
+		if (s.charAt(i) == '*'){
+			if (i == s.length() - 1)
+				return true;
+			if (p.charAt(j) == '*')
+				return this.checkMatch(s, i, p, j + 1) || this.checkMatch(s, i + 1, p, j) || this.checkMatch(s, i + 1, p, j + 1);
+			do {
+				for (; j < p.length() && ! (p.charAt(j) == s.charAt(i + 1) || p.charAt(j) == '?' || p.charAt(j) == '*'); j ++);
+			} while ()
+		}
+	}
+	public boolean isMatch(String s, String p) {
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

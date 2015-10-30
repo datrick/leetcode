@@ -1,0 +1,13 @@
+package convert2chs;
+
+public class Convert2chs {
+
+	public void readUnicodeFile(String fileName) {
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

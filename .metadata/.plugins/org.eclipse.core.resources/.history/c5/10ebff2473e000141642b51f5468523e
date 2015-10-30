@@ -1,0 +1,17 @@
+package leet037;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Solution {
+
+	public void solveSudoku(char[][] board) {
+		Set<Character>[] set = new[3] HashSet<>();
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

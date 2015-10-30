@@ -1,0 +1,22 @@
+package leet099;
+
+import java.util.Stack;
+
+public class Solution {
+
+	public void recoverTree(TreeNode root) {
+		if(root == null)
+			return;
+		Stack<TreeNode> st = new Stack<>();
+		st.push(root);
+		while(!st.isEmpty()){
+			
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

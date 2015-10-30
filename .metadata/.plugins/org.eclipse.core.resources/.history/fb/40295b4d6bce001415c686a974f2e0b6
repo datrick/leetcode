@@ -1,0 +1,13 @@
+package leet114;
+
+public class Solution {
+
+	public void flatten(TreeNode root) {
+		Stack<TreeNode> st = new Stack();
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,28 @@
+package leet114;
+
+import java.util.Stack;
+
+public class Solution {
+
+	public void flatten(TreeNode root) {
+		if(root == null)
+			return;
+		Stack<TreeNode> st = new Stack();
+		TreeNode tn = new TreeNode(0);
+		st.push(root);
+		while(!st.isEmpty()){
+			tn = st.pop();
+			if(tn.right != null)
+				st.push(tn.right);
+			if(tn.left != null)
+				st.push(tn.left);
+			tn.left = null;
+		}
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
