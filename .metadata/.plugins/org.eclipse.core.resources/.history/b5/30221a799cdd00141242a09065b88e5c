@@ -1,9 +1,0 @@
-package leet044;
-
-public class SolutionII extends Solution {
-
-	public SolutionII() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
