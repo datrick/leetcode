@@ -1,2 +1,9 @@
 .metadata/
 .recommenders/
+*/*.project
+*/*.classpath
+*/*.gitignore
+*/bin/
+*/.settings/
+*.*#
+*.*~
