@@ -1,0 +1,38 @@
+package leet224;
+
+public class Solution {
+    private enum Operator {
+	ADD(1),
+	MIN(1),
+	MUL(2),
+	DIV(2);
+
+	private final int precedence;
+
+	Operator(int pre) {
+	    this.precedence = pre;
+	}
+
+	public int getPrecedence() {
+	    return this.precedence;
+	}
+    }
+
+    public int calculate(String s) {
+	Stack<Integer> numSt = new Stack<>();
+        Stack<Operator> opSt = new Stack<>();
+	int i = 0, n = s.length();
+	while (i < n) {
+	    String t = this.readNext(s, i);
+	    if (isNum(t))
+		numSt.push(Integer.valueOf(t));
+	    else {
+		
+    }
+    
+    public static void main(String[] args) {
+	// TODO Auto-generated method stub
+
+    }
+
+}
