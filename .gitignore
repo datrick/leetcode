@@ -1,2 +1,14 @@
+<<<<<<< HEAD
 .metadata\
 .recommenders\
+=======
+.metadata/
+.recommenders/
+#*/*.project
+#*/*.classpath
+#*/*.gitignore
+#*/bin/
+#*/.settings/
+*.*#
+*.*~
+>>>>>>> 264163edbae5784e3ace2e69752ce8fcdf3046db
