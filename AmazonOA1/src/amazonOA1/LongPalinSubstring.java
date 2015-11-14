@@ -1,6 +1,5 @@
 package amazonOA1;
 
-
 public class LongPalinSubstring {
 
 	public String longestPalindromeSubstring(String s) {
@@ -39,6 +38,14 @@ public class LongPalinSubstring {
 		// TODO Auto-generated method stub
 		String s = "abb";
 		System.out.println(new LongPalinSubstring().longestPalindromeSubstring(s));
+		TreeNode a = new TreeNode(1);
+		TreeNode b = new TreeNode(2);
+		a.left = new TreeNode(2);
+		a.left.left = new TreeNode(3);
+		a.left.right = new TreeNode(4);
+		b.left = new TreeNode(3);
+		b.left.left = new TreeNode(4);
+		System.out.println(new CheckSubtree().isSubTree(a, b));
 	}
 
 }
