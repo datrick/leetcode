@@ -34,6 +34,15 @@ public class LongPalinSubstring {
 //		System.out.format("%d, %d%n", start_max, start_max + dp[ind_max]);
 		return s.substring(start_max, start_max + dp[ind_max]);
 	}
+	
+	private static ListNode generateList(int[] listValues) {
+		ListNode head = new ListNode(0), cur = head;
+		for (int v: listValues) {
+			cur.next = new ListNode(v);
+			cur = cur.next;
+		}
+		return head.next;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "abb";
@@ -47,14 +56,20 @@ public class LongPalinSubstring {
 		b.left.left = new TreeNode(4);
 		System.out.println(new CheckSubtree().isSubTree(a, b));
 		int[] listValues = {1, 2, 3, 4};
-		ListNode head = new ListNode(0), cur = head;
-		for (int v: listValues) {
-			cur.next = new ListNode(v);
-			cur = cur.next;
-		}
+		ListNode head = generateList(listValues);
 		head = new Reverse2ndHalfTree().reverse2ndHalf(head.next);
+		ListNode cur = head;
 		for (cur = head; cur != null; cur = cur.next)
 			System.out.format("[%d]->", cur.val);
+		System.out.println("");
+		listValues = new int[] {1};
+		ListNode l1 = generateList(listValues);
+		listValues = new int[] {10};
+		ListNode l2 = generateList(listValues);
+		head = new MergeTwoSortedLists().mergeTwoLists(l1, l2);
+		for (cur = head; cur != null; cur = cur.next)
+			System.out.format("[%d]->", cur.val);
+		System.out.println("");
 	}
 
 }
