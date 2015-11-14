@@ -46,6 +46,15 @@ public class LongPalinSubstring {
 		b.left = new TreeNode(3);
 		b.left.left = new TreeNode(4);
 		System.out.println(new CheckSubtree().isSubTree(a, b));
+		int[] listValues = {1, 2, 3, 4};
+		ListNode head = new ListNode(0), cur = head;
+		for (int v: listValues) {
+			cur.next = new ListNode(v);
+			cur = cur.next;
+		}
+		head = new Reverse2ndHalfTree().reverse2ndHalf(head.next);
+		for (cur = head; cur != null; cur = cur.next)
+			System.out.format("[%d]->", cur.val);
 	}
 
 }
