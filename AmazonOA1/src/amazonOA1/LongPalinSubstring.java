@@ -45,31 +45,37 @@ public class LongPalinSubstring {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String s = "abb";
-		System.out.println(new LongPalinSubstring().longestPalindromeSubstring(s));
-		TreeNode a = new TreeNode(1);
-		TreeNode b = new TreeNode(2);
-		a.left = new TreeNode(2);
-		a.left.left = new TreeNode(3);
-		a.left.right = new TreeNode(4);
-		b.left = new TreeNode(3);
-		b.left.left = new TreeNode(4);
-		System.out.println(new CheckSubtree().isSubTree(a, b));
-		int[] listValues = {1, 2, 3, 4};
+//		String s = "abb";
+//		System.out.println(new LongPalinSubstring().longestPalindromeSubstring(s));
+//		TreeNode a = new TreeNode(1);
+//		TreeNode b = new TreeNode(2);
+//		a.left = new TreeNode(2);
+//		a.left.left = new TreeNode(3);
+//		a.left.right = new TreeNode(4);
+//		b.left = new TreeNode(3);
+//		b.left.left = new TreeNode(4);
+//		System.out.println(new CheckSubtree().isSubTree(a, b));
+		int[] listValues = {1, 2, 3, 4, 5};
 		ListNode head = generateList(listValues);
-		head = new Reverse2ndHalfTree().reverse2ndHalf(head.next);
 		ListNode cur = head;
 		for (cur = head; cur != null; cur = cur.next)
 			System.out.format("[%d]->", cur.val);
 		System.out.println("");
-		listValues = new int[] {1};
-		ListNode l1 = generateList(listValues);
-		listValues = new int[] {10};
-		ListNode l2 = generateList(listValues);
-		head = new MergeTwoSortedLists().mergeTwoLists(l1, l2);
+		head = new Reverse2ndHalf().reverse2ndHalf(head);
 		for (cur = head; cur != null; cur = cur.next)
 			System.out.format("[%d]->", cur.val);
 		System.out.println("");
+//		listValues = new int[] {1};
+//		ListNode l1 = generateList(listValues);
+//		listValues = new int[] {10};
+//		ListNode l2 = generateList(listValues);
+//		head = new MergeTwoSortedLists().mergeTwoLists(l1, l2);
+//		for (cur = head; cur != null; cur = cur.next)
+//			System.out.format("[%d]->", cur.val);
+//		System.out.println("");
+//		
+//		int[] arrival = {1, 2, 3, 4, 5, 6}, run = {3, 2, 1, 3, 2, 1};
+//		System.out.println(ShortestJobFirst.shortestJobFirst(arrival, run));
 	}
 
 }
