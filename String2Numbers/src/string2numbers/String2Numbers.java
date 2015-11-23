@@ -40,11 +40,11 @@ public class String2Numbers {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String s = "dhl";
+		String s = "SAME,VDPH,IDENTICAL";
 		//String s = "abij,dehi,mnqr,stwx";
 		System.out.println(new String2Numbers().convertStr2Int(s));
 		System.out.println("");
-		int[] list = {16};
+		int[] list = {12,7,8,17,23,12,6,4,15};
 		System.out.println(new String2Numbers().convertNum2Str(list));
 	}
 
