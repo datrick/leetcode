@@ -26,15 +26,38 @@ public class InsertCLL {
 			}
 			cur = cur.next;
 		}
+		//insert the node before cur
 		head.pre = cur.pre;
-		cur.pre.next = head;
 		head.next = cur;
+		head.pre.next = head;
 		cur.pre = head;
 		return node;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		int[] nums = { 2, 4, 4, 4, 6, 8 };
+		CircularLinkedList node = null, cur = null;
+		for (int v: nums) {
+			cur = new CircularLinkedList(v);
+			if (node == null) {
+				node = cur;
+				node.next = node;
+				node.pre = node;
+			} else {
+				cur.next = node.next;
+				cur.pre = node;
+				cur.next.pre = cur;
+				node.next = cur;
+				node = cur;
+			}
+		}
+		for (int v: nums)
+			node = InsertCLL.insertCircularLinkedList(node.next.next.next, v);
+		cur = node;
+		do {
+			System.out.format("%d ", cur.val);
+			cur = cur.next;
+		} while (cur != node);
 	}
 
 }
