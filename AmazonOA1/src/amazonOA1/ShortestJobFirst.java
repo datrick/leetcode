@@ -3,7 +3,11 @@ package amazonOA1;
 import java.util.PriorityQueue;
 
 public class ShortestJobFirst {
-	
+
+	public static void main(String[] args) {
+		int [] arrival = { 0, 1, 3, 9 }, run = { 2, 1, 7, 5 };
+		System.out.println( ShortestJobFirst.shortestJobFirst(arrival, run));
+	}
 	private static class Job implements Comparable<Job> {
 		private int time_begin;	//time starting to wait in the queue
 		private int time_remain;	//remaining required CPU time
