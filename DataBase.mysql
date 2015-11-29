@@ -1,0 +1,27 @@
+SELECT DISTINCT t1.Num FROM Logs t1, Logs t2, Logs t3
+WHERE t1.Num = t2.Num AND t1.Id = t2.Id - 1 AND t1.Num = t3.Num AND t1.Id = t3.Id - 2;
+
+SELECT Dep.Name AS Department, e1.Name AS Employee, e1.Salary AS Salary
+FROM Department AS Dep, (SELECT MAX(Salary) AS Salary, DepartmentId FROM Employee e2 GROUP BY DepartmentId) AS Emp, Employee AS e1
+WHERE Emp.DepartmentId = Dep.Id AND Emp.Salary = e1.Salary;
+
+CREATE TABLE Employee(
+Id INT PRIMARY KEY AUTO_INCREMENT,
+Name VARCHAR(50) NOT NULL,
+Salary INT DEFAULT 10000,
+DepartmentId INT NOT NULL);
+
+INSERT INTO Employee VALUES
+(NULL, 'Joe', 70000, 1),
+(NULL, 'Henry', 80000, 2),
+(NULL, 'Sam', 60000, 2),
+(NULL, 'Max', 90000, 1);
+
+CREATE TABLE Department(
+Id INT PRIMARY KEY AUTO_INCREMENT,
+Name, VARCHAR(50) NOT NULL); 
+INSERT INTO Department VALUES
+(NULL, 'IT'),
+(NULL, 'Sales');
+
+SELECT e1.Name AS name, e1.Salary AS sal, e1.DepartmentId AS id, @rank := IF(pid <> id, 1, IF(psal = sal, @rank, @rank + 1)), @psal = sal, @pid = id FROM (Employee ORDER BY DepartmentId, Salary) AS ordert, (SELECT @rank := 0, @pid := NULL, @psal := NULL) AS dummyt;
