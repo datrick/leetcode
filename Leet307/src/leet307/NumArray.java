@@ -1,81 +1,48 @@
 package leet307;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NumArray {
 
-	private int[] nums;
-	List<int[]> sumList;
-	private int size_b, num_b;
-    public NumArray(int[] nums) {
-        this.nums = nums;
-        if (nums.length <= 0)
-        	return;
-        this.size_b = (int) Math.sqrt(nums.length);
-        this.num_b = nums.length % size_b == 0 ? nums.length / size_b : nums.length / size_b + 1;
-        this.sumList = new ArrayList<>(num_b);
-        for (int i = 0; i < num_b; i ++) {
-        	int[] sums = new int[size_b];
-        	this.sumList.add(sums);
-        	sums[0] = this.nums[i * size_b];
-        	for (int j = 1; j < size_b && i * size_b + j < this.nums.length; j ++)
-        		sums[j] = sums[j - 1] + this.nums[i * size_b + j];
-        }
-    }
+	public static void main(String[] args) {
+		int[] nums = {1, 3, 5};
+		NumArray obj = new NumArray(nums);
+		obj.update(1, 2);
+		System.out.println(obj.sumRange(0, 2));
+	}
+	private int[] tree, nums;
+	private void updateTree(int i, int val) {
+		int delta = val - nums[i];
+		nums[i] = val;
+		i ++;
+		while (i < tree.length) {
+			tree[i] += delta;
+			i += (i & -i);
+		}
+	}
+	private int getSum(int i) {
+		i ++;
+		int res = 0;
+		while (i > 0) {
+			res += tree[i];
+			i -= (i & -i);
+		}
+		return res;
+	}
+	public NumArray(int[] nums) {
+		if (nums == null || nums.length <= 0)
+			return;
+		this.nums = new int[nums.length];
+		this.tree = new int[nums.length + 1];
+		for (int i = 0; i < nums.length; i ++)
+			this.updateTree(i, nums[i]);
+	}
 
-    void update(int i, int val) {
-    	int delta = val - this.nums[i];
-        this.nums[i] = val;
-        int n = i / this.size_b, m = i - n * size_b;
-        int[] sums = this.sumList.get(n);
-        for (int j = m; j < sums.length; j ++)
-        	sums[j] += delta;
-    }
+	void update(int i, int val) {
+		if (i >= this.nums.length || this.nums[i] == val)
+			return;
+		this.updateTree(i, val);
+	}
 
-    public int sumRange(int i, int j) {
-        int ni = i / this.size_b, nj = j / this.size_b;
-        if (ni == nj)
-        	return this.sumList.get(ni)[j - size_b * nj] - this.sumList.get(ni)[i - size_b * ni] + this.nums[i];
-        int sum = this.sumList.get(ni)[size_b - 1] - this.sumList.get(ni)[i - size_b * ni] + this.nums[i];
-        for (int k = ni + 1; k < nj; k ++)
-        	sum += this.sumList.get(k)[size_b - 1];
-        sum += this.sumList.get(nj)[j - size_b * nj];
-        return sum;
-    }
-    
-    public static void main(String[] args) {
-    	int[] nums = {0, 9, 5, 7, 3};
-    	NumArray obj = new NumArray(nums);
-    	for (int i = 0; i < nums.length; i ++)
-    		for (int j = i; j < nums.length; j ++)
-    			System.out.printf("sum of [%d, %d] is %d%n", i, j, obj.sumRange(i, j));
-    	obj.update(4, 5);
-    	obj.update(1, 7);
-    	obj.update(0, 8);
-    }
+	public int sumRange(int i, int j) {
+		return this.getSum(j) - this.getSum(i) + this.nums[i];
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
