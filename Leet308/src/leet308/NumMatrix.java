@@ -2,85 +2,52 @@ package leet308;
 
 public class NumMatrix {
 
-	private static class SumNode {
-		public int row1, row2, col1, col2, sum;
-		public SumNode[] child;
-		public SumNode(int r1, int c1, int r2, int c2) {
-			row1 = r1;
-			row2 = r2;
-			col1 = c1;
-			col2 = c2;
-			child = new SumNode[4];
-		}
+	private int[][] matrix, tree;
+	
+	private void updateTree(int row, int col, int val) {
+		int delta = val - this.matrix[row][col];
+		if (delta == 0)
+			return;
+		this.matrix[row][col] = val;
+//		System.out.printf("row: %d, col: %d val: %d%n", row, col, val);
+		for (int i = row + 1; i < tree.length; i += (i & -i)) 
+			for (int j = col + 1; j < tree[0].length; j += (j & -j)) {
+//				System.out.printf("(%d, %d) ", i, j);
+				tree[i][j] += delta;
+			}
+				
+		return;
 	}
 	
-	private SumNode root;
-	private int[][] matrix = null;
-	private SumNode buildTree(int[][] matrix, int row1, int col1, int row2, int col2) {
-		if (row1 > row2 || col1 > col2)
-			return null;
-		int rowm = (row1 + row2) / 2, colm = (col1 + col2) / 2;
-		SumNode node = new SumNode(row1, col1, row2, col2);
-		if (row1 == row2 && col1 == col2) {
-			node.sum = matrix[row1][col1];
-			return node;
-		}
-		node.child[0] = buildTree(matrix, row1, col1, rowm, colm);
-		if (rowm + 1 <= row2)
-			node.child[1] = buildTree(matrix, rowm + 1, col1, row2, colm);
-		if (colm + 1 <= col2)
-			node.child[2] = buildTree(matrix, row1, colm + 1, rowm, col2);
-		if (rowm + 1 <= row2 && colm + 1 <= col2)
-			node.child[3] = buildTree(matrix, rowm + 1, colm + 1, row2, col2);
-		for (SumNode t: node.child)
-			node.sum += t == null ? 0 : t.sum;
-		return node;
+	private int getSum(int row, int col) {
+		int res = 0;
+		for (int i = row + 1; i > 0; i -= (i & -i))
+			for (int j = col + 1; j > 0; j -= (j & -j))
+				res += tree[i][j];
+		return res;
 	}
+	
 	public NumMatrix(int[][] matrix) {
-		this.matrix = matrix;
-		if (matrix == null || matrix.length <= 0 || matrix[0].length <= 0) {
-			this.root = null;
+		if (matrix == null || matrix.length <= 0)
 			return;
-		}
-		this.root = this.buildTree(matrix, 0, 0, matrix.length - 1, matrix[0].length - 1);
+		this.matrix = new int[matrix.length][matrix[0].length];
+		this.tree = new int[matrix.length + 1][matrix[0].length + 1];
+		for (int i = 0; i < matrix.length; i ++)
+			for (int j = 0; j < matrix[0].length; j ++)
+				this.update(i, j, matrix[i][j]);
+		return;
 	}
 
 	public void update(int row, int col, int val) {
-		SumNode node = this.root;
-		int delta = val - this.matrix[row][col];
-		this.matrix[row][col] = val;
-		while (node != null) {
-			node.sum += delta;
-			SumNode tmp = null;
-			for (int i = 0; i < node.child.length; i ++) {
-				if (node.child[i] != null && row >= node.child[i].row1 && row <= node.child[i].row2
-						&& col >= node.child[i].col1 && col <= node.child[i].col2) {
-					tmp = node.child[i];
-					break;
-				}
-			}
-			node = tmp;
-		}
+		this.updateTree(row, col, val);
 	}
 
-	private int doSum(SumNode node, int row1, int col1, int row2, int col2) {
-		if (row1 == node.row1 && col1 == node.col1 && row2 == node.row2 && col2 == node.col2)
-			return node.sum;
-		int res = 0;
-		for (SumNode child: node.child) {
-			if (child == null)
-				continue;
-			int r1 = Math.max(child.row1, row1), r2 = Math.min(child.row2, row2),
-					c1 = Math.max(child.col1, col1), c2 = Math.min(child.col2, col2);
-			if (r1 <= r2 && c1 <= c2)
-				res += this.doSum(child, r1, c1, r2, c2);
-		}
-		return res;
-	}
 	public int sumRegion(int row1, int col1, int row2, int col2) {
-		if (this.root == null)
-			return 0;
-		return this.doSum(this.root, row1, col1, row2, col2);
+		int s0 = this.getSum(row2, col2), 
+			s1 = row1 - 1 >= 0 && col1 - 1 >= 0 ? this.getSum(row1 - 1, col1 - 1) : 0,
+			s2 = row1 - 1 >= 0 ? this.getSum(row1 - 1, col2) : 0,
+			s3 = col1 - 1 >= 0 ? this.getSum(row2, col1 - 1) : 0;
+		return s0 - s2 - s3 + s1;
 	}
 
 	public static void main(String[] args) {
