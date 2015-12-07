@@ -25,3 +25,6 @@ INSERT INTO Department VALUES
 (NULL, 'Sales');
 
 SELECT e1.Name AS name, e1.Salary AS sal, e1.DepartmentId AS id, @rank := IF(pid <> id, 1, IF(psal = sal, @rank, @rank + 1)), @psal = sal, @pid = id FROM (Employee ORDER BY DepartmentId, Salary) AS ordert, (SELECT @rank := 0, @pid := NULL, @psal := NULL) AS dummyt;
+
+SELECT * FROM (SELECT Status, Request_at AS Request_at From Trips t WHERE 'No' = (SELECT Banned FROM Users u WHERE u.User_Id = t.Client_Id) AND 'No' = (SELECT Banned FROM Users u WHERE u.User_Id = t.Driver_Id) AND Request_at BETWEEN CAST('2013-10-1' AS DATE) AND CAST('2013-10-3' AS DATE)) AS t2 WHERE STRCMP(t2.Status, 'complete') = 0;
+
