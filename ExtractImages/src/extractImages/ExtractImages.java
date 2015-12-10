@@ -46,7 +46,7 @@ public class ExtractImages {
 	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		String webUrl = "http://galleries.nubiles.net/samples/dasha_neal/cute-nubile/?coupon=1405013";
+		String webUrl = "http://ancensored.com/nude-appearance/Miscellaneous/Rila-Fukushima/";
 		URL url = new URL(webUrl);
 		URLConnection connection = url.openConnection();
 		InputStream is = connection.getInputStream();
@@ -57,7 +57,7 @@ public class ExtractImages {
 		HTMLEditorKit.Parser parser = new ParserDelegator();
 		HTMLEditorKit.ParserCallback cb = htmlDoc.getReader(0);
 		parser.parse(br, cb, true);	
-		String folderPath = "E:/javaDownloadedImages/";
+		String folderPath = "/Users/datrick/Downloads/javaDownloadedImages/";
 		for(int i = 0; i < 200; i ++){
 			if( Files.notExists(Paths.get(folderPath + Integer.toString(i) + "/"))){
 				folderPath = folderPath + Integer.toString(i) + "/";
