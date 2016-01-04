@@ -1,6 +1,7 @@
 package leet316;
 
-import java.util.LinkedList;
+import java.util.Arrays;
+
 
 public class SolutionIII {
 
@@ -8,32 +9,41 @@ public class SolutionIII {
 		if (s == null || s.length() <= 0)
 			return "";
 		int[] counter = new int[26];
-		int num = 0;
 		char[] a = s.toCharArray();
 		for (char c: a) {
-			if (counter[c - 'a'] ++ == 0)
-				num ++;
+			counter[c - 'a'] ++;
 		}
+//		System.out.println(Arrays.toString(counter));
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < a.length; ) {
-			if (counter[a[i] - 'a'] == 0) {
+			if (counter[a[i] - 'a'] < 0) {
 				i ++;
 				continue;
 			}
-			char c = a[i];
+			int idx = i;
 			int j = i;
-			while (counter[a[j] - 'a'] > 1) {
-				if (a[j] < c)
-					c = a[j];
-				counter[a[j ++] - 'a'] --;
+			for (j = i; j < a.length; j ++) {
+				if (counter[a[j] - 'a'] < 0)
+					continue;
+				if (a[j] < a[idx])
+					idx = j;
+				if (counter[a[j] - 'a'] -- == 1)
+					break;
 			}
-			
+			for (; j > idx; j --) {
+				if (j < a.length && counter[a[j] - 'a'] >= 0)
+					counter[a[j] - 'a'] ++;
+			}
+			sb.append(a[idx]);
+			counter[a[idx] - 'a'] = -1;
+			i = idx + 1;
 		}
-		
+		return sb.toString();
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		SolutionIII sol = new SolutionIII();
+		System.out.println(sol.removeDuplicateLetters("cbacdcbc"));
 	}
 
 }
