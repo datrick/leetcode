@@ -1,7 +1,10 @@
 package leet316;
 
+<<<<<<< HEAD
+=======
 import java.util.Arrays;
 
+>>>>>>> origin/java
 
 public class SolutionIII {
 
