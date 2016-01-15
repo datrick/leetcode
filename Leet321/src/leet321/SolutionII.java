@@ -1,5 +1,7 @@
 package leet321;
 
+import java.util.Arrays;
+
 
 public class SolutionII {
 
@@ -24,10 +26,10 @@ public class SolutionII {
 			for (int p = j; p < nums2.length && nums1.length - i + nums2.length - p >= n; p ++)
 				idx2 = nums2[p] > nums2[idx2] ? p : idx2;
 			if (greater[idx1][idx2]) {
-				res[l ++] = nums1[idx1];
+				res[l] = nums1[idx1];
 				i = idx1 + 1;
 			} else {
-				res[l ++] = nums2[idx2];
+				res[l] = nums2[idx2];
 				j = idx2 + 1;
 			}
 		}
@@ -35,7 +37,8 @@ public class SolutionII {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		int[] nums1 = {8, 9}, nums2 = {3, 9};
+		System.out.println(Arrays.toString(new SolutionII().maxNumber(nums1, nums2, 3)));
 	}
 
 }
