@@ -33,6 +33,7 @@ public class Solution {
 			max = Math.max(max, queue.size());
 		}
 		return max;
+		
 	}
 }
 
