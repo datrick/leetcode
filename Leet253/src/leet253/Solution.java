@@ -27,7 +27,7 @@ public class Solution {
 				(i1, i2) -> i1.end == i2.end? Integer.compare(i1.start, i2.start) : Integer.compare(i1.end, i2.end));
 		for (int i = 0; i < intervals.length; i ++) {
 			int s = intervals[i].start;
-			while (!queue.isEmpty() && queue.peek().end < s)
+			while (!queue.isEmpty() && queue.peek().end <= s)
 				queue.poll();
 			queue.offer(intervals[i]);
 			max = Math.max(max, queue.size());
