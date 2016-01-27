@@ -5,9 +5,7 @@ import java.util.Arrays;
 public class Solution {
 	
 	private int mapIndex(int i, int len) {
-		if ( i * 2 < len)
-			return i * 2;
-		return i * 2 - ((len - 1) | 1);
+		return (i * 2 + 1) % (len | 1);
 	}
 	private void swap(int[] nums, int i, int j) {
 		int tmp = nums[i];
@@ -39,19 +37,20 @@ public class Solution {
 	public void wiggleSort(int[] nums) {
 		if (nums == null || nums.length <= 1)
 			return;
-		double m = 0.0;
+//		double m = 0.0;
 		int len = nums.length;
-		if (len % 2 == 0) {
-			m = ((double) nums[findkthIndex(nums, len / 2)] + (double) nums[findkthIndex(nums, len / 2 - 1)]) / 2;
-		} else
-			m = (double) nums[findkthIndex(nums, len / 2)];
+//		if (len % 2 == 0) {
+//			m = ((double) nums[findkthIndex(nums, len / 2)] + (double) nums[findkthIndex(nums, len / 2 - 1)]) / 2;
+//		} else
+//			m = (double) nums[findkthIndex(nums, len / 2)];
 //		System.out.println(m);
+		int m = nums[findkthIndex(nums, len / 2)];
 		int lo = 0, i = 0, hi = len - 1;
 		while (i <= hi) {
-			if (nums[mapIndex(i, len)] < m)
+			if (nums[mapIndex(i, len)] > m)
 				swap(nums, mapIndex(i ++, len), mapIndex(lo ++, len));
 			else {
-				if (nums[mapIndex(i, len)] > m)
+				if (nums[mapIndex(i, len)] < m)
 					swap(nums, mapIndex(i, len), mapIndex(hi --, len));
 				else
 					i ++;
@@ -61,7 +60,7 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = {4, 5, 5, 6};
+		int[] nums = {1, 3, 2, 2, 3};
 		//System.out.println(nums[new Solution().kthElement(nums, 7, 0, nums.length - 1)]);
 		new Solution().wiggleSort(nums);
 		System.out.println(Arrays.toString(nums));
