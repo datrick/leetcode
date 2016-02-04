@@ -45,8 +45,8 @@ public class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String s = "((((((())))((";
-		System.out.println(new SolutionII().removeInvalidParentheses(s));
+		String s ="((()";
+		System.out.println(new SolutionIII().removeInvalidParentheses(s));
 	}
 
 }
