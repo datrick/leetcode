@@ -4,9 +4,7 @@ import java.util.Stack;
 
 public class Solution {
 
-	public boolean isValidSerialization(String preorder) {
-		Stack<Character> st = new Stack<>();
-		
+	public boolean isValidSerialization(String preorder) {		
 		if (preorder == null || preorder.length() == 0)
 			return true;
 		Stack<String> st = new Stack<>();
