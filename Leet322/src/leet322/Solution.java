@@ -28,7 +28,7 @@ public class Solution {
 		// TODO Auto-generated method stub
 		int[] coins = {1, 2, 5};
 		int amount = 19;
-		System.out.println(new Solution().coinChange(coins, amount));
+		System.out.println(new SolutionII().coinChange(coins, amount));
 	}
 
 }
